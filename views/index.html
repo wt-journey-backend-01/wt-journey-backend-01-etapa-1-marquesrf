@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBurguer</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/contato">Contato</a>
+    </nav>
+    <h1>Cardápio de Sanduíches</h1>
+  <section id="cardapio">
+    <!-- Os sanduíches serão exibidos aqui via JS -->
+  </section>
+
+  <h2>Adicionar Sanduíche</h2>
+  <form id="form-sanduiche" method="GET" action="/agradecimentos">
+    <div>
+      <label for="nome">Sugira um Sanduíche:</label>
+      <input type="text" id="nome" name="nome" required>
+    </div>
+    <div>
+      <label for="ingredientes">Ingredientes:</label>
+      <textarea id="ingredientes" name="ingredientes" required></textarea>
+    </div>
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <script>
+    // Simulação de chamada à API
+    fetch('/api/lanches')
+      .then(res => res.json())
+      .then(lanches => {
+        const cardapio = document.getElementById('cardapio');
+        lanches.forEach(lanche => {
+          const div = document.createElement('div');
+          div.className = 'lanche-card';
+          div.innerHTML = `
+            <h3>${lanche.nome}</h3>
+            <p><strong>Ingredientes:</strong> ${lanche.ingredientes}</p>
+          `;
+          cardapio.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>

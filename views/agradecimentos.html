@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Obrigado!</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <h1>Obrigado pelo envio!</h1>
+  <div id="dados-sanduiche"></div>
+  <a href="/">Voltar ao cardápio</a>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nome = params.get('nome');
+    const ingredientes = params.get('ingredientes');
+    if (nome && ingredientes) {
+      document.getElementById('dados-sanduiche').innerHTML = `
+        <p>Recebemos os dados do seu sanduíche:</p>
+        <ul>
+          <li><strong>Nome:</strong> ${nome}</li>
+          <li><strong>Ingredientes:</strong> ${ingredientes}</li>
+        </ul>
+      `;
+    }
+  </script>
+</body>
+</html>
